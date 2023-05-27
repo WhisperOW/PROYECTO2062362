@@ -24,7 +24,7 @@ struct Tienda {
 };
 
 bool rep(int N, int i);
-bool año(int F);
+bool aÃ±o(int F);
 int alta;
 
 Tienda* Articulos;
@@ -32,7 +32,7 @@ Tienda* Articulos;
 int main() {
 	setlocale(LC_CTYPE, "spanish");
 	int opc;
-	printf("\n\t%cMenú de Opciones%c\n", 16, 17);
+	printf("\n\t%cMenÃº de Opciones%c\n", 16, 17);
 	printf("%c1. Alta\n%c2. Modificar\n%c3. Baja\n%c4. Lista\n%c5. Limpiar pantalla\n%c6. Salir\n", 175, 175, 175, 175, 175, 175);
 	scanf_s("%d", &opc);
 
@@ -63,7 +63,7 @@ int main() {
 		exit(1);
 		break;
 	default:
-		printf("Ingrese una opción válida\n");
+		printf("Ingrese una opciÃ³n vÃ¡lida\n");
 		return main();
 		break;
 	}
@@ -74,7 +74,7 @@ int main() {
 
 void ALTA() {
 
-	printf("\nIngrese el número de registros\n");
+	printf("\nIngrese el nÃºmero de registros\n");
 	scanf_s("%d", &alta);
 
 	Articulos = new Tienda[alta];
@@ -84,11 +84,11 @@ void ALTA() {
 		int N, F;
 
 		cin.ignore();
-		printf("\nIngrese el número de artículo %d\n", i + 1); scanf_s("%d", &N);
+		printf("\nIngrese el nÃºmero de artÃ­culo %d\n", i + 1); scanf_s("%d", &N);
 		while (rep(N, i))
 		{
-			printf("Este número ya está en existencia\n");
-			printf("Ingrese el número de artículo %d\n", i + 1);
+			printf("Este nÃºmero ya estÃ¡ en existencia\n");
+			printf("Ingrese el nÃºmero de artÃ­culo %d\n", i + 1);
 			scanf_s("%d", &N);
 		}
 		Articulos[i].NumArt = N;
@@ -98,18 +98,18 @@ void ALTA() {
 		cin.ignore();
 		Articulos[i].iva = Articulos[i].sub * 0.16;
 		Articulos[i].total = Articulos[i].sub + Articulos[i].iva;
-		printf("Ingrese el año de lanzamiento\n"); scanf_s("%d", &F);
-		while (año(F))
+		printf("Ingrese el aÃ±o de lanzamiento\n"); scanf_s("%d", &F);
+		while (aÃ±o(F))
 		{
-			printf("Año no válido\n");
-			printf("Ingrese el año de lanzamiento\n");
+			printf("AÃ±o no vÃ¡lido\n");
+			printf("Ingrese el aÃ±o de lanzamiento\n");
 			scanf_s("%d", &F);
 		}
 		Articulos[i].year = F;
 		cin.ignore();
-		printf("Ingrese la descripción\n"); getline(cin, Articulos[i].Desc);
-		printf("Ingrese el género\n"); getline(cin, Articulos[i].Genero);
-		printf("Ingrese la clasificación\n"); getline(cin, Articulos[i].Clas);
+		printf("Ingrese la descripciÃ³n\n"); getline(cin, Articulos[i].Desc);
+		printf("Ingrese el gÃ©nero\n"); getline(cin, Articulos[i].Genero);
+		printf("Ingrese la clasificaciÃ³n\n"); getline(cin, Articulos[i].Clas);
 		printf("Ingrese la plataforma del juego\n"); getline(cin, Articulos[i].Plat);
 		Articulos[i].status = "ACTIVO";
 	}
@@ -119,7 +119,7 @@ bool rep(int N, int i)
 {
 	for (int j = 0; j < i; j++) 
 	{
-		if (N == Articulos[i].NumArt)
+		if (N == Articulos[j].NumArt)
 		{
 			return true;
 		}
@@ -127,7 +127,7 @@ bool rep(int N, int i)
 	return false;
 }
 
-bool año(int F) 
+bool aÃ±o(int F) 
 {
 	if (F < 1960 || F>2025) 
 	{
@@ -144,12 +144,12 @@ void MODIFICAR() {
 	int j, op, op2, N, F;
 	do
 	{
-		printf("\nIngrese el número de Artículo a modificar\n");
+		printf("\nIngrese el nÃºmero de ArtÃ­culo a modificar\n");
 		scanf_s("%d", &j);
 		while (j > alta || j <= 0)
 		{
-			printf("Número de registro NO válido\n");
-			printf("Ingrese el número de Artículo a modificar\n");
+			printf("NÃºmero de registro NO vÃ¡lido\n");
+			printf("Ingrese el nÃºmero de ArtÃ­culo a modificar\n");
 			scanf_s("%d", &j);
 		}
 		j = j - 1;
@@ -159,7 +159,7 @@ void MODIFICAR() {
 			if ((Articulos[i].status == "ELIMINADO"))
 			{
 				printf("REGISTRO %d ELIMINADO", i + 1);
-				printf("Ingrese un registro válido \n");
+				printf("Ingrese un registro vÃ¡lido \n");
 				op = 1;
 			}
 			else
@@ -169,7 +169,7 @@ void MODIFICAR() {
 		}
 	} while (op == 1);
 
-	printf("Ingrese que desea modificar\n%c1.-Número\n%c2.- Nombre\n%c3.- Precio\n%c4.-Año\n%c5.-Descripción\n%c6.- Género\n%c7.- Clasificación\n%c8.-Plataforma\n", 175, 175, 175, 175, 175, 175, 175, 175);
+	printf("Ingrese que desea modificar\n%c1.-NÃºmero\n%c2.- Nombre\n%c3.- Precio\n%c4.-AÃ±o\n%c5.-DescripciÃ³n\n%c6.- GÃ©nero\n%c7.- ClasificaciÃ³n\n%c8.-Plataforma\n", 175, 175, 175, 175, 175, 175, 175, 175);
 	cin >> op2;
 
 	switch (op2)
@@ -178,11 +178,11 @@ void MODIFICAR() {
 		for (int i = j; i == j; i++)
 		{
 			while (getchar() != '\n');
-			printf("\nIngrese el nuevo número de artículo %d\n"); scanf_s("%d", &N);
+			printf("\nIngrese el nuevo nÃºmero de artÃ­culo %d\n"); scanf_s("%d", &N);
 			while (rep(N, i))
 			{
-				printf("Este número ya está en existencia\n");
-				printf("Ingrese el nuevo número de artículo %d\n", i + 1);
+				printf("Este nÃºmero ya estÃ¡ en existencia\n");
+				printf("Ingrese el nuevo nÃºmero de artÃ­culo %d\n", i + 1);
 				scanf_s("%d", &N);
 			}
 			Articulos[i].NumArt = N;
@@ -210,11 +210,11 @@ void MODIFICAR() {
 		for (int i = j; i == j; i++)
 		{
 			while (getchar() != '\n');
-			printf("Ingrese el nuevo año de lanzamiento\n"); scanf_s("%d", &F);
-			while (año(F))
+			printf("Ingrese el nuevo aÃ±o de lanzamiento\n"); scanf_s("%d", &F);
+			while (aÃ±o(F))
 			{
-				printf("Año no válido\n");
-				printf("Ingrese el nuevo año de lanzamiento\n");
+				printf("AÃ±o no vÃ¡lido\n");
+				printf("Ingrese el nuevo aÃ±o de lanzamiento\n");
 				scanf_s("%d", &F);
 			}
 			Articulos[i].year = F;
@@ -224,7 +224,7 @@ void MODIFICAR() {
 		for (int i = j; i == j; i++)
 		{
 			while (getchar() != '\n');
-			printf("Ingrese la nueva descripción\n");
+			printf("Ingrese la nueva descripciÃ³n\n");
 			getline(cin, Articulos[i].Desc);
 		}
 		break;
@@ -232,7 +232,7 @@ void MODIFICAR() {
 		for (int i = j; i == j; i++)
 		{
 			while (getchar() != '\n');
-			printf("Ingrese el nuevo género\n");
+			printf("Ingrese el nuevo gÃ©nero\n");
 			getline(cin, Articulos[i].Genero);
 		}
 		break;
@@ -240,7 +240,7 @@ void MODIFICAR() {
 		for (int i = j; i == j; i++)
 		{
 			while (getchar() != '\n');
-			printf("Ingrese la nueva clasificación\n");
+			printf("Ingrese la nueva clasificaciÃ³n\n");
 			getline(cin, Articulos[i].Clas);
 		}
 		break;
@@ -253,7 +253,7 @@ void MODIFICAR() {
 		}
 		break;
 	default:
-		printf("Ingrese una opción válida\n");
+		printf("Ingrese una opciÃ³n vÃ¡lida\n");
 		return MODIFICAR();
 		break;
 	}
@@ -267,7 +267,7 @@ void BAJA() {
 	scanf_s("%d", &j);
 	while (j > alta || j <= 0) 
 	{
-		printf("Número de registro NO válido\n");
+		printf("NÃºmero de registro NO vÃ¡lido\n");
 		printf("Ingrese el registro a dar de baja\n");
 		scanf_s("%d", &j);
 	}
@@ -287,18 +287,18 @@ void LISTA() {
 
 		if (Articulos[i].status == "ELIMINADO") {
 
-			printf("\nArtículo %d Elimidado\n", i + 1);
+			printf("\nArtÃ­culo %d Elimidado\n", i + 1);
 
 		}
 		else {
-			printf("\tArtículo %d", i + 1);
-			printf("\nNúmero de Artículo: %d\n", Articulos[i].NumArt);
+			printf("\tArtÃ­culo %d", i + 1);
+			printf("\nNÃºmero de ArtÃ­culo: %d\n", Articulos[i].NumArt);
 			printf("Nombre: %s%c\n", Articulos[i].NomArt.c_str(), 169);
 			printf("Subtotal: %f, IVA: %f, Total: %f\n", Articulos[i].sub, Articulos[i].iva, Articulos[i].total);
-			printf("Año de lanzamiento: %d\n", Articulos[i].year);
-			printf("Descripción: %s\n", Articulos[i].Desc.c_str());
-			printf("Género: %s\n", Articulos[i].Genero.c_str());
-			printf("Clasificación: %s\n", Articulos[i].Clas.c_str());
+			printf("AÃ±o de lanzamiento: %d\n", Articulos[i].year);
+			printf("DescripciÃ³n: %s\n", Articulos[i].Desc.c_str());
+			printf("GÃ©nero: %s\n", Articulos[i].Genero.c_str());
+			printf("ClasificaciÃ³n: %s\n", Articulos[i].Clas.c_str());
 			printf("Plataforma: %s\n", Articulos[i].Plat.c_str());
 		}
 	}
