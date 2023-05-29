@@ -158,7 +158,7 @@ void MODIFICAR() {
 		{
 			if ((Articulos[i].status == "ELIMINADO"))
 			{
-				printf("REGISTRO %d ELIMINADO", i + 1);
+				printf("REGISTRO %d ELIMINADO\n", i + 1);
 				printf("Ingrese un registro válido \n");
 				op = 1;
 			}
@@ -178,7 +178,7 @@ void MODIFICAR() {
 		for (int i = j; i == j; i++)
 		{
 			while (getchar() != '\n');
-			printf("\nIngrese el nuevo número de artículo %d\n"); scanf_s("%d", &N);
+			printf("\nIngrese el nuevo número de artículo\n"); scanf_s("%d", &N);
 			while (rep(N, i))
 			{
 				printf("Este número ya está en existencia\n");
@@ -281,28 +281,157 @@ void BAJA() {
 
 }
 
-void LISTA() {
+void LISTA()
+{
+	int decision, filtro;
 
-	for (int i = 0; i < alta; i++) {
-
-		if (Articulos[i].status == "ELIMINADO") {
-
-			printf("\nArtículo %d Elimidado\n", i + 1);
-
-		}
-		else {
-			printf("\tArtículo %d", i + 1);
-			printf("\nNúmero de Artículo: %d\n", Articulos[i].NumArt);
-			printf("Nombre: %s%c\n", Articulos[i].NomArt.c_str(), 169);
-			printf("Subtotal: %f, IVA: %f, Total: %f\n", Articulos[i].sub, Articulos[i].iva, Articulos[i].total);
-			printf("Año de lanzamiento: %d\n", Articulos[i].year);
-			printf("Descripción: %s\n", Articulos[i].Desc.c_str());
-			printf("Género: %s\n", Articulos[i].Genero.c_str());
-			printf("Clasificación: %s\n", Articulos[i].Clas.c_str());
-			printf("Plataforma: %s\n", Articulos[i].Plat.c_str());
-		}
+	printf("\n¿Desea filtrar los artículos?  1. Si  2.No\n");
+	scanf_s("%d", &decision);
+	while (decision != 1 && decision != 2);
+	{
+		printf("Ingrese una opción valida\n");
+		printf("Desea filtrar los artículos  1. Si  2.No\n");
+		scanf_s("%d", &decision);
 	}
 
+	if (decision == 1)
+	{
+		printf("\n¿Por cual categoría desea filtrar?\n");
+		printf("1. Género  2. Clasificación  3. Plataforma\n");
+		scanf_s("%d", &filtro);
+		while (filtro != 1 && filtro != 2 && filtro != 3)
+		{
+			printf("Ingrese una opción valida\n");
+			printf("\n¿Por cual categoría desea filtrar?\n");
+			printf("1. Género  2. Clasificación  3. Plataforma\n");
+			scanf_s("%d", &filtro);
+		}
+
+		int Search;
+		string B;
+		switch (filtro){
+
+		case 1:
+			cin.ignore();
+			printf("Ingrese el género que desea filtrar\n");
+			getline(cin, B);
+			for (int i = 0; i < alta; i++)
+			{
+				Search = B.compare(Articulos[i].Genero);
+				if (Search == 0)
+				{
+					if (Articulos[i].status == "ELIMINADO")
+					{
+
+						printf("\nArtículo %d Elimidado\n", i + 1);
+
+					}
+					else
+					{
+						printf("\tArtículo %d", i + 1);
+						printf("\nNúmero de Artículo: %d\n", Articulos[i].NumArt);
+						printf("Nombre: %s%c\n", Articulos[i].NomArt.c_str(), 169);
+						printf("Subtotal: %f, IVA: %f, Total: %f\n", Articulos[i].sub, Articulos[i].iva, Articulos[i].total);
+						printf("Año de lanzamiento: %d\n", Articulos[i].year);
+						printf("Descripción: %s\n", Articulos[i].Desc.c_str());
+						printf("Género: %s\n", Articulos[i].Genero.c_str());
+						printf("Clasificación: %s\n", Articulos[i].Clas.c_str());
+						printf("Plataforma: %s\n", Articulos[i].Plat.c_str());
+					}
+				}
+			}
+			break;
+		case 2:
+			cin.ignore();
+			printf("Ingrese la clasificación que desea filtrar\n");
+			getline(cin, B);
+			for (int i = 0; i < alta; i++)
+			{
+				Search = B.compare(Articulos[i].Clas);
+				if (Search == 0)
+				{
+					if (Articulos[i].status == "ELIMINADO")
+					{
+
+						printf("\nArtículo %d Elimidado\n", i + 1);
+
+					}
+					else
+					{
+						printf("\tArtículo %d", i + 1);
+						printf("\nNúmero de Artículo: %d\n", Articulos[i].NumArt);
+						printf("Nombre: %s%c\n", Articulos[i].NomArt.c_str(), 169);
+						printf("Subtotal: %f, IVA: %f, Total: %f\n", Articulos[i].sub, Articulos[i].iva, Articulos[i].total);
+						printf("Año de lanzamiento: %d\n", Articulos[i].year);
+						printf("Descripción: %s\n", Articulos[i].Desc.c_str());
+						printf("Género: %s\n", Articulos[i].Genero.c_str());
+						printf("Clasificación: %s\n", Articulos[i].Clas.c_str());
+						printf("Plataforma: %s\n", Articulos[i].Plat.c_str());
+					}
+				}
+			}
+			break;
+		case 3:
+			cin.ignore();
+			printf("Ingrese la plataforma que desea filtrar\n");
+			getline(cin, B);
+			for (int i = 0; i < alta; i++)
+			{
+				Search = B.compare(Articulos[i].Plat);
+				if (Search == 0)
+				{
+					if (Articulos[i].status == "ELIMINADO")
+					{
+
+						printf("\nArtículo %d Elimidado\n", i + 1);
+
+					}
+					else
+					{
+						printf("\tArtículo %d", i + 1);
+						printf("\nNúmero de Artículo: %d\n", Articulos[i].NumArt);
+						printf("Nombre: %s%c\n", Articulos[i].NomArt.c_str(), 169);
+						printf("Subtotal: %f, IVA: %f, Total: %f\n", Articulos[i].sub, Articulos[i].iva, Articulos[i].total);
+						printf("Año de lanzamiento: %d\n", Articulos[i].year);
+						printf("Descripción: %s\n", Articulos[i].Desc.c_str());
+						printf("Género: %s\n", Articulos[i].Genero.c_str());
+						printf("Clasificación: %s\n", Articulos[i].Clas.c_str());
+						printf("Plataforma: %s\n", Articulos[i].Plat.c_str());
+					}
+				}
+			}
+			break;
+		default:
+			printf("Opcion invalida \n");
+			return LISTA();
+			break;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < alta; i++) {
+
+			if (Articulos[i].status == "ELIMINADO")
+			{
+
+				printf("\nArtículo %d Elimidado\n", i + 1);
+
+			}
+			else
+			{
+				printf("\tArtículo %d", i + 1);
+				printf("\nNúmero de Artículo: %d\n", Articulos[i].NumArt);
+				printf("Nombre: %s%c\n", Articulos[i].NomArt.c_str(), 169);
+				printf("Subtotal: %f, IVA: %f, Total: %f\n", Articulos[i].sub, Articulos[i].iva, Articulos[i].total);
+				printf("Año de lanzamiento: %d\n", Articulos[i].year);
+				printf("Descripción: %s\n", Articulos[i].Desc.c_str());
+				printf("Género: %s\n", Articulos[i].Genero.c_str());
+				printf("Clasificación: %s\n", Articulos[i].Clas.c_str());
+				printf("Plataforma: %s\n", Articulos[i].Plat.c_str());
+			}
+		}
+
+	}
 }
 
 void ARCHIVO() {
